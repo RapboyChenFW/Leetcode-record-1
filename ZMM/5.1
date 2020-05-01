@@ -1,0 +1,19 @@
+#36 数独 python
+def isValidSudoku(board):
+    rows = [[] for i in range(9)]
+    columns = [[] for i in range(9)]
+    boxes = [[] for i in range(9)]
+    for row in range(9):
+        for col in range(9):
+            box = int(col//3 + (row//3)*3)
+            if board[row][col] != '.':
+                if board[row][col] in rows[row]:
+                    return False
+                if board[row][col] in columns[col]:
+                    return False
+                if board[row][col] in boxes[box]:
+                    return False
+                rows[row].append(board[row][col])
+                columns[col].append(board[row][col])
+                boxes[box].append(board[row][col])
+    return True
